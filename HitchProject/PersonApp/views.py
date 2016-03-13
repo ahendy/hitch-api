@@ -31,20 +31,15 @@ class PersonViewDetail(generics.RetrieveUpdateAPIView):
 		instance = self.get_object()
 		print instance
 
-# 		passengerpk  = request.data.get("passengers")[0]
-# 		passengerobj = Person.objects.get(pk=passengerpk) 
-
-# 		instance.passengers.add(passengerobj)
-# 		serializer = RideSerializer(instance)
 # #		self.perform_update(serializer)
-		return Response(serializer.data) #serializer.data)
+		return Response(PersonSerializer.data) #serializer.data)
 
 
 
 class PersonViewHistory(generics.ListCreateAPIView):
 	def get_queryset(self):
 		one = self.request.GET.get('pk','')
-		print "asdfasdf" + one +"asdfads"
+		
 		return Person.objects.all()
 		#queryset = Rides.objects.all()
 		
