@@ -9,14 +9,7 @@ from HitchProject.PersonApp.models import Person
 from django.contrib.auth.models import User
 from rest_framework.response import Response
 
-
-
 from django.core.exceptions import ObjectDoesNotExist
-
-
-# Create your views here.
-
-
 
 class RideViewSet(generics.ListCreateAPIView):
 	serializer_class = RideSerializer
@@ -26,18 +19,8 @@ class RideViewSet(generics.ListCreateAPIView):
 			return Ride.objects.all()
 		else:
 			try:
-				#print(place_id)
 				location = Location.objects.get(place_id=place_id)
-				print(location)
-				ride = Ride.objects.get(destination = location)
-				#print(ride)
-				rloc_id = ride.destination.place_id
-				#print rloc
-				rides = Ride.objects.filter(destination__place_id = rloc_id)
-				#rides = Ride.objects.all()
-				#rides = Ride.objects.filter(destination = location) # filter 
-				#rides = Ride.objects.filter(destination = rloc)
-				
+				rides = Ride.objects.filter(destination=location)				
 				return rides
 			except:
 				print("except")
