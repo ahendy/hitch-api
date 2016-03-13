@@ -20,10 +20,10 @@ class RideViewSet(generics.ListCreateAPIView):
 		else:
 			try:
 				location = Location.objects.get(place_id=place_id)
-				rides = Ride.objects.filter(destination=location)				
+				rides 	 = Ride.objects.filter(destination=location)				
 				return rides
 			except:
-				print("except")
+				print("exception on RideViewSet")
 				return []
 
 
@@ -37,10 +37,9 @@ class RideViewDetail(generics.RetrieveUpdateAPIView):
 		instance = self.get_object()
 		print instance
 
-		passengerpk = request.data.get("passengers")[0]
-		print passengerpk
+		passengerpk  = request.data.get("passengers")[0]
 		passengerobj = Person.objects.get(pk=passengerpk) 
-		print passengerobj
+
 		instance.passengers.add(passengerobj)
 		serializer = RideSerializer(instance)
 #		self.perform_update(serializer)

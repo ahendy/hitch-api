@@ -18,7 +18,7 @@ from django.contrib import admin
 from rest_framework import routers
 
 from Rides.views import RideViewSet, RideViewDetail
-from PersonApp.views import PersonViewSet
+from PersonApp.views import PersonViewSet,PersonViewDetail,PersonViewHistory
 from Location.views import LocationViewSet
 
 
@@ -34,14 +34,16 @@ router = routers.DefaultRouter()
 urlpatterns = [
 	url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'persons', PersonViewSet.as_view()),
+    url(r'persons(/)+$', PersonViewSet.as_view()),
+    url(r'persons/(?P<pk>\d+)$', PersonViewDetail.as_view()),
+    url(r'persons/(?P<pk>\d+)/history', PersonViewHistory.as_view()),
+    
     url(r'locations', LocationViewSet.as_view()),
-    url(r'rides$', RideViewSet.as_view()),
+    url(r'rides(/)+$', RideViewSet.as_view()),
     url(r'rides/(?P<pk>\d+)', RideViewDetail.as_view()),
     url(r'^api-token-auth/', 'rest_framework_jwt.views.obtain_jwt_token'),
     url(r'^api-token-refresh/', 'rest_framework_jwt.views.refresh_jwt_token'),
     url(r'^api-token-verify/', 'rest_framework_jwt.views.verify_jwt_token'),
 
-#    url(r'ride/(?P<place_id>.+)/$', RideViewSet.as_view()),
 
 ]

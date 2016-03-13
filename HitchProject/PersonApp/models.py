@@ -7,10 +7,10 @@ from django.db import models
 
 class Person(models.Model): #Tweet table, contains attrib body, img_url, date
 	
-	user = models.OneToOneField(User, on_delete = models.CASCADE)
+	user 		= models.OneToOneField(User, on_delete = models.CASCADE)
 	profile_pic = models.URLField()
-	phone_num = models.CharField(max_length = 12)
-
+	phone_num 	= models.CharField(max_length = 12)
+	
 
 
 

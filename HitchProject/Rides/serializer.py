@@ -12,7 +12,7 @@ class RideSerializer(serializers.ModelSerializer):
 	
 	class Meta:
 		model  = Ride
-		fields = ('pk', 'passengers','date', 'departure', 'destination',
+		fields = ('pk','passengers','date', 'departure', 'destination',
 					'time')
 
 	def create(self, validated_data):
@@ -20,7 +20,7 @@ class RideSerializer(serializers.ModelSerializer):
 		temp_pid2 = validated_data['destination']['place_id']
 		
 		try:
-			departure = Location.objects.get(place_id = temp_pid1)
+			departure 	= Location.objects.get(place_id = temp_pid1)
 		except:
 			departure 	= Location.objects.create(
 			place_id 	= validated_data['departure']['place_id'],
@@ -52,7 +52,7 @@ class RideSerializer(serializers.ModelSerializer):
 		ride.passengers.add(person)
 		return ride
 	
-	
+		
 
 
 

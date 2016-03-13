@@ -10,8 +10,8 @@ from django.db import models
 
 class Location(models.Model): #Tweet table, contains attrib body, img_url, date
 	
-	place_id = models.CharField(max_length = 60)
-	name = models.CharField(max_length = 200)
+	place_id	= models.CharField(max_length = 60)
+	name 		= models.CharField(max_length = 200)
 
 	
 
