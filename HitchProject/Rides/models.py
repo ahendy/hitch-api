@@ -19,3 +19,11 @@ class Ride(models.Model):
 	# def __str__(self):
 	# 	return self.departure, self.date
 	# 	return '%s, %s, %s' % (departure.place_id, date, "" )
+
+
+
+
+	# TODO
+
+	# IF empty passengers, remove from lists
+	

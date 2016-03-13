@@ -34,3 +34,4 @@ class PersonSerializer(serializers.ModelSerializer):
 		person.save()
 		# print("serializer")
 		return person
+

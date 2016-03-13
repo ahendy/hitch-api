@@ -30,10 +30,10 @@ class RideViewSet(generics.ListCreateAPIView):
 				location = Location.objects.get(place_id=place_id)
 				print(location)
 				ride = Ride.objects.get(destination = location)
-				print(ride)
-				rloc = ride.destination.place_id
-				print rloc
-				rides = Ride.objects.filter(destination__place_id = rloc)
+				#print(ride)
+				rloc_id = ride.destination.place_id
+				#print rloc
+				rides = Ride.objects.filter(destination__place_id = rloc_id)
 				#rides = Ride.objects.all()
 				#rides = Ride.objects.filter(destination = location) # filter 
 				#rides = Ride.objects.filter(destination = rloc)
