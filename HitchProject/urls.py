@@ -25,7 +25,7 @@ from Location.views import LocationViewSet
 
 router = routers.DefaultRouter()
 
-router.register(r'person', PersonViewSet)
+#router.register(r'person', PersonViewSet)
 router.register(r'location', LocationViewSet)
 router.register(r'ride', RideViewSet)
 
@@ -33,5 +33,6 @@ router.register(r'ride', RideViewSet)
 
 urlpatterns = [
 	url(r'^', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'persons', PersonViewSet.as_view())
 ]
