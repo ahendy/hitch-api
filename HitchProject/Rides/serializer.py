@@ -23,20 +23,22 @@ class RideSerializer(serializers.ModelSerializer):
 			departure = Location.objects.get(place_id = temp_pid1)
 		except:
 			departure 	= Location.objects.create(
-			place_id 	= validated_data['departure']['place_id'],
-			name 		= validated_data['departure']['name'],
+				place_id 	= validated_data['departure']['place_id'],
+				name 		= validated_data['departure']['name'],
 			)
+			departure.save()
+
 		
 		try:
 			destination = Location.objects.get(place_id = temp_pid2)
 		except:
 			destination = Location.objects.create(
-			place_id 	= validated_data['destination']['place_id'],
-			name 		= validated_data['destination']['name'],
-			)	
+				place_id 	= validated_data['destination']['place_id'],
+				name 		= validated_data['destination']['name'],
+			)
+			destination.save()
+	
 
-		departure.save()
-		destination.save()
 		# person = Person.objects.get(user=self.request.user)
 
 		ride = Ride.objects.create(
