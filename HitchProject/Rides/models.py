@@ -8,7 +8,7 @@ from django.db import models
 
 class Ride(models.Model):
 	created_by = models.OneToOneField(User, related_name = 'usr1') #user1 != user2
-	passenger  = models.OneToOneField(User, related_name = 'usr2') 
+	passenger  = models.OneToOneField(User, related_name = 'usr2', blank = True,  null=True) 
 	date       = models.DateField()
 	
 	departure 	= models.OneToOneField(Location, related_name = 'dep_loc')

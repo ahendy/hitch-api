@@ -2,12 +2,17 @@
 from models import Location
 from rest_framework import viewsets
 from serializer import LocationSerializer
+from rest_framework import generics
+
 
 # Create your views here.
 
 
 
-class LocationViewSet(viewsets.ModelViewSet):
+class LocationViewSet(generics.ListCreateAPIView):
+	def get_queryset(self):
+		return Location.objects.all()
 
-	queryset = Location.objects.all()
 	serializer_class = LocationSerializer
+
+

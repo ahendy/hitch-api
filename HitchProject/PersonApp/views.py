@@ -12,6 +12,5 @@ from rest_framework import generics
 
 class PersonViewSet(generics.ListCreateAPIView):
 	def get_queryset(self):
-		print(Person.objects.all())
 		return Person.objects.all()
 	serializer_class = PersonSerializer

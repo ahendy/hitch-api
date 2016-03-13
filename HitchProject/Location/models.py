@@ -6,12 +6,16 @@ from django.db import models
 
 
 class Location(models.Model): #Tweet table, contains attrib body, img_url, date
-	lat = models.DecimalField(max_digits=9, decimal_places=6)
-	longi = models.DecimalField(max_digits=9, decimal_places=6)
+	
+	place_id = models.CharField(max_length = 60)
+	name = models.CharField(max_length = 60)
 
-	addr = models.CharField(max_length=70)
-	StateProv = models.CharField(max_length = 70)
-	zipCode =  models.CharField(max_length = 7)
+	# lat = models.DecimalField(max_digits=9, decimal_places=6)
+	# longi = models.DecimalField(max_digits=9, decimal_places=6)
+
+	# addr = models.CharField(max_length=70)
+	# StateProv = models.CharField(max_length = 70)
+	# zipCode =  models.CharField(max_length = 7)
 
 
 
