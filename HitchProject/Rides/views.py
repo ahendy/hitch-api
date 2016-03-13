@@ -26,10 +26,18 @@ class RideViewSet(generics.ListCreateAPIView):
 			return Ride.objects.all()
 		else:
 			try:
-				print(place_id)
+				#print(place_id)
 				location = Location.objects.get(place_id=place_id)
-				print("got location")
-				rides = Ride.objects.filter(destination=location).filter(passenger__isnull = True) # filter 
+				print(location)
+				ride = Ride.objects.get(destination = location)
+				print(ride)
+				rloc = ride.destination.place_id
+				print rloc
+				rides = Ride.objects.filter(destination__place_id = rloc)
+				#rides = Ride.objects.all()
+				#rides = Ride.objects.filter(destination = location) # filter 
+				#rides = Ride.objects.filter(destination = rloc)
+				
 				return rides
 			except:
 				print("except")
