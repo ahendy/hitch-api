@@ -34,7 +34,7 @@ class RideViewSet(generics.ListCreateAPIView):
 				print("except")
 				return []
 
-	
+#screw IT	
 
 class RideViewDetail(generics.RetrieveUpdateAPIView):
 	queryset = Ride.objects.all()
