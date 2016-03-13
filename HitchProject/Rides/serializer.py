@@ -42,19 +42,14 @@ class RideSerializer(serializers.ModelSerializer):
 			departure		= departure,
 			destination		= destination, 
 			date 			= validated_data['date'],
-			created_by		= validated_data['created_by']
-			
+			created_by		= validated_data['created_by'],
+			time			= validated_data['time'],
 
 		)
 		ride.save()
 		return ride
 	
-	def update(self, ride, validated_data):
-
-		print  validated_data
-		# ride validated_data['passenger'] = 
-		
-		return None
+	
 
 
 

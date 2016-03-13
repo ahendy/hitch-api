@@ -5,6 +5,10 @@ from rest_framework import viewsets
 from serializer import RideSerializer
 from rest_framework import generics
 from HitchProject.Location.models import Location
+from HitchProject.PersonApp.models import Person
+from django.contrib.auth.models import User
+
+
 
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -14,6 +18,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 
 class RideViewSet(generics.ListCreateAPIView):
+	serializer_class = RideSerializer
 	def get_queryset(self):
 		place_id = self.request.GET.get('place_id', '')
 		if not place_id:
@@ -30,14 +35,25 @@ class RideViewSet(generics.ListCreateAPIView):
 				return []
 
 	
-	serializer_class = RideSerializer
 
 class RideViewDetail(generics.RetrieveUpdateAPIView):
 	queryset = Ride.objects.all()
 	def get_serializer_class(self):
 		return RideSerializer
 	# serializer_class = RideSerializer 
-
+	
+	def update(self, request, *args, **kwargs):
+		instance = self.get_object()
+		print instance.passenger
+		passengerpk = request.data.get("passenger")
+		passengerobj = Person.objects.get( user = (User.objects.get(pk = passengerpk) )) 
+		print passengerobj
+		instance.passenger = passengerobj
+		instance.save()
+		serializer = RideSerializer(instance)
+		serializer.is_valid(raise_exception=True)
+		self.perform_update(serializer)
+		return Response(serializer.data)
 
 
 
