@@ -13,3 +13,6 @@ class Ride(models.Model):
 	
 	departure 	= models.OneToOneField(Location, related_name = 'dep_loc')
 	destination = models.OneToOneField(Location, related_name = 'dest_loc')
+
+	def __str__(self):
+		return '%s, %s, %s' % (self.created_by, self.passenger,self.pk )

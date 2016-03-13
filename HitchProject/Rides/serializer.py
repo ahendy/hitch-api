@@ -7,21 +7,32 @@ from HitchProject.Location.models import Location
 class RideSerializer(serializers.ModelSerializer):
 	departure   = LocationSerializer()
 	destination = LocationSerializer()
-	passenger = serializers.PrimaryKeyRelatedField(required=False, read_only=True)
+	passenger 	= serializers.PrimaryKeyRelatedField(required=False, read_only=True)
+	
 	class Meta:
-		model = Ride
-		fields = ('created_by', 'passenger','date', 
+		model  = Ride
+		fields = ('pk', 'created_by', 'passenger','date', 
 					'departure','destination')
 
 	def create(self, validated_data):
-		departure = Location.objects.create(
-			place_id = validated_data['departure']['place_id'],
-			name = validated_data['departure']['name'],
-		)
-		destination = Location.objects.create(
-			place_id = validated_data['destination']['place_id'],
-			name = validated_data['destination']['name'],
-		)	
+		temp_pid1 = validated_data['departure']['place_id']
+		temp_pid2 = validated_data['destination']['place_id']
+		
+		try:
+			departure = Location.objects.get(place_id = temp_pid1)
+		except:
+			departure 	= Location.objects.create(
+			place_id 	= validated_data['departure']['place_id'],
+			name 		= validated_data['departure']['name'],
+			)
+		
+		try:
+			destination = Location.objects.get(place_id = temp_pid2)
+		except:
+			destination = Location.objects.create(
+			place_id 	= validated_data['destination']['place_id'],
+			name 		= validated_data['destination']['name'],
+			)	
 
 		departure.save()
 		destination.save()
@@ -36,7 +47,20 @@ class RideSerializer(serializers.ModelSerializer):
 
 		)
 		ride.save()
-
-
 		return ride
-	# self.request.person
+	
+	def update(self, ride, validated_data):
+
+		print  validated_data
+		# ride validated_data['passenger'] = 
+		
+		return None
+
+
+
+
+
+
+
+
+

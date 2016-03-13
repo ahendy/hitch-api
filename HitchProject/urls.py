@@ -17,7 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
 
-from Rides.views import RideViewSet
+from Rides.views import RideViewSet, RideViewDetail
 from PersonApp.views import PersonViewSet
 from Location.views import LocationViewSet
 
@@ -36,7 +36,9 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'persons', PersonViewSet.as_view()),
     url(r'location', LocationViewSet.as_view()),
-    url(r'ride', RideViewSet.as_view()),
-
+    url(r'ride$', RideViewSet.as_view()),
+    url(r'ride/(?P<pk>\d+)', RideViewDetail.as_view()),
+    
+#    url(r'ride/(?P<place_id>.+)/$', RideViewSet.as_view()),
 
 ]
