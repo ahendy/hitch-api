@@ -14,7 +14,7 @@ class PersonSerializer(serializers.ModelSerializer):
 	user = UserSerializer()
 	class Meta:
 		model = Person
-		fields = ('user', 'profile_pic','date', 'phone_num')
+		fields = ('user', 'profile_pic', 'phone_num')
 
 	def create(self, validated_data):
 		user = User.objects.create(
@@ -29,7 +29,6 @@ class PersonSerializer(serializers.ModelSerializer):
 		person = Person.objects.create(
 			user = user,
 			profile_pic = validated_data['profile_pic'],
-			date 		= validated_data['date'],
 			phone_num 	= validated_data['phone_num']
 		)
 		person.save()

@@ -9,9 +9,8 @@ class Person(models.Model): #Tweet table, contains attrib body, img_url, date
 	
 	user = models.OneToOneField(User, on_delete = models.CASCADE)
 	profile_pic = models.URLField()
-	date 	= models.DateField()
 	phone_num = models.CharField(max_length = 12)
-	
+
 
 
 

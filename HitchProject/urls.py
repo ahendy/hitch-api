@@ -35,9 +35,9 @@ urlpatterns = [
 	url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'persons', PersonViewSet.as_view()),
-    url(r'location', LocationViewSet.as_view()),
-    url(r'ride$', RideViewSet.as_view()),
-    url(r'ride/(?P<pk>\d+)', RideViewDetail.as_view()),
+    url(r'locations', LocationViewSet.as_view()),
+    url(r'rides$', RideViewSet.as_view()),
+    url(r'rides/(?P<pk>\d+)', RideViewDetail.as_view()),
     
 #    url(r'ride/(?P<place_id>.+)/$', RideViewSet.as_view()),
 
