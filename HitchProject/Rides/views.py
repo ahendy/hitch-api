@@ -7,6 +7,7 @@ from rest_framework import generics
 from HitchProject.Location.models import Location
 from HitchProject.PersonApp.models import Person
 from django.contrib.auth.models import User
+from rest_framework.response import Response
 
 
 
@@ -34,7 +35,6 @@ class RideViewSet(generics.ListCreateAPIView):
 				print("except")
 				return []
 
-#screw IT	
 
 class RideViewDetail(generics.RetrieveUpdateAPIView):
 	queryset = Ride.objects.all()
@@ -44,16 +44,16 @@ class RideViewDetail(generics.RetrieveUpdateAPIView):
 	
 	def update(self, request, *args, **kwargs):
 		instance = self.get_object()
-		print instance.passenger
-		passengerpk = request.data.get("passenger")
-		passengerobj = Person.objects.get( user = (User.objects.get(pk = passengerpk) )) 
+		print instance
+
+		passengerpk = request.data.get("passengers")[0]
+		print passengerpk
+		passengerobj = Person.objects.get(pk=passengerpk) 
 		print passengerobj
-		instance.passenger = passengerobj
-		instance.save()
+		instance.passengers.add(passengerobj)
 		serializer = RideSerializer(instance)
-		serializer.is_valid(raise_exception=True)
-		self.perform_update(serializer)
-		return Response(serializer.data)
+#		self.perform_update(serializer)
+		return Response(serializer.data) #serializer.data)
 
 
 
